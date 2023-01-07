@@ -8,6 +8,8 @@ class CodeGenerationScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    print('build');
+
     final state1 = ref.watch(gStateProvider);
     final state2 = ref.watch(gStateFutureProvider);
     final state3 = ref.watch(gStateFuture2Provider);
@@ -15,7 +17,6 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
-    final state5 = ref.watch(gStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
@@ -42,7 +43,21 @@ class CodeGenerationScreen extends ConsumerWidget {
               error: (err, stack) => Text(err.toString()),
               loading: () => const Center(child: CircularProgressIndicator())),
           Text('State4 : $state4'),
-          Text('State4 : $state5'),
+          Consumer(
+            builder: (context, ref, child) {
+              print('builder build');
+              final state5 = ref.watch(gStateNotifierProvider);
+
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text('State5: $state5'),
+                  if (child != null) child,
+                ],
+              );
+            },
+            child: const Text('hello'),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
