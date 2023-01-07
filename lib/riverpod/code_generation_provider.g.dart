@@ -39,3 +39,24 @@ final gStateProvider = AutoDisposeProvider<String>(
       const bool.fromEnvironment('dart.vm.product') ? null : _$gStateHash,
 );
 typedef GStateRef = AutoDisposeProviderRef<String>;
+String _$gStateFutureHash() => r'eef3e95f799e15b4647a3851f8ee6b4438b05afa';
+
+/// See also [gStateFuture].
+final gStateFutureProvider = AutoDisposeFutureProvider<int>(
+  gStateFuture,
+  name: r'gStateFutureProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$gStateFutureHash,
+);
+typedef GStateFutureRef = AutoDisposeFutureProviderRef<int>;
+String _$gStateFuture2Hash() => r'c346965a30436f2ab0f038c27592f51d26b2d4bb';
+
+/// See also [gStateFuture2].
+final gStateFuture2Provider = FutureProvider<int>(
+  gStateFuture2,
+  name: r'gStateFuture2Provider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$gStateFuture2Hash,
+);
+typedef GStateFuture2Ref = FutureProviderRef<int>;
