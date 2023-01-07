@@ -15,11 +15,12 @@ class CodeGenerationScreen extends ConsumerWidget {
       number1: 10,
       number2: 20,
     ));
+    final state5 = ref.watch(gStateNotifierProvider);
 
     return DefaultLayout(
       title: 'CodeGenerationScreen',
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('State1 : $state1'),
           state2.when(
@@ -41,6 +42,24 @@ class CodeGenerationScreen extends ConsumerWidget {
               error: (err, stack) => Text(err.toString()),
               loading: () => const Center(child: CircularProgressIndicator())),
           Text('State4 : $state4'),
+          Text('State4 : $state5'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(gStateNotifierProvider.notifier).increment();
+                },
+                child: const Text('increment'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(gStateNotifierProvider.notifier).decrement();
+                },
+                child: const Text('decrement'),
+              ),
+            ],
+          )
         ],
       ),
     );
